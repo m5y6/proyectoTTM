@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +11,29 @@
     <header class="primera">
         <div id="logo">
             <img src="img/logo3.png" alt="logo">
+        </div>
+
+        <!-- Buscador en el header -->
+        <div class="header-search">
+            <div class="header-search-container">
+                <svg class="header-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input 
+                    type="text" 
+                    id="header-buscador" 
+                    class="header-search-input" 
+                    placeholder="Buscar repuestos..."
+                    autocomplete="off"
+                >
+                <button type="button" class="header-search-btn" onclick="buscarEnCatalogo()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
 
         <nav class="opciones">
@@ -28,9 +50,78 @@
                 <h2 class="titulo">Truck & Trailer Melipilla</h2>
                 <div class="texto">
                     <p>Ofrecemos repuestos de alta calidad y servicio técnico especializado para mantener en óptimo funcionamiento
-                    los vehículos de carga de nuestros clientes, asegurando confianza, seguridad y eficiencia en cada entrega.  Convertirnos en 
-                    la tienda online líder de repuestos para camiones en Chile, reconocidos por nuestra rapidez en despacho, asesoría técnica y compromiso con el desarrollo del transporte .
-</p>
+                    los vehículos de carga de nuestros clientes, asegurando confianza, seguridad y eficiencia en cada entrega. Convertirnos en 
+                    la tienda online líder de repuestos para camiones en Chile, reconocidos por nuestra rapidez en despacho, asesoría técnica y compromiso con el desarrollo del transporte.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Mini Catálogo por Categorías -->
+    <section class="categorias-section">
+        <div class="categorias-container">
+            <h2>Explora por Categorías</h2>
+            <div class="categorias-grid">
+                <div class="categoria-card" onclick="buscarCategoria('motor')">
+                    <div class="categoria-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <h3>Motor</h3>
+                    <p>Repuestos para motor y sistema de combustión</p>
+                </div>
+                <div class="categoria-card" onclick="buscarCategoria('frenos')">
+                    <div class="categoria-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </div>
+                    <h3>Frenos</h3>
+                    <p>Pastillas, discos y sistema de frenado</p>
+                </div>
+                <div class="categoria-card" onclick="buscarCategoria('suspension')">
+                    <div class="categoria-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2 2z"></path>
+                            <path d="M8 21v-4a2 2 0 012-2h4a2 2 0 012 2v4"></path>
+                        </svg>
+                    </div>
+                    <h3>Suspensión</h3>
+                    <p>Amortiguadores y muelles</p>
+                </div>
+                <div class="categoria-card" onclick="buscarCategoria('neumaticos')">
+                    <div class="categoria-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="6"></circle>
+                            <circle cx="12" cy="12" r="2"></circle>
+                        </svg>
+                    </div>
+                    <h3>Neumáticos</h3>
+                    <p>Neumáticos para todo tipo de vehículos</p>
+                </div>
+                <div class="categoria-card" onclick="buscarCategoria('electrico')">
+                    <div class="categoria-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                        </svg>
+                    </div>
+                    <h3>Eléctrico</h3>
+                    <p>Baterías, alternadores y componentes eléctricos</p>
+                </div>
+                <div class="categoria-card" onclick="buscarCategoria('filtros')">
+                    <div class="categoria-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46"></polygon>
+                        </svg>
+                    </div>
+                    <h3>Filtros</h3>
+                    <p>Filtros de aceite, aire y combustible</p>
                 </div>
             </div>
         </div>
@@ -38,52 +129,13 @@
 
     <section class="tercera">
         <div class="top_ventas">
-            <h2>Productos más vendidos</h2>
+            <h2>Productos Destacados</h2>
             <div class="productos">
                 <div class="producto">
-                    <img src="img/bateria.png" alt="Producto 1">
-                    <h3>Batería</h3>
-                    <p>Descripción del Producto 1</p>
-                    <p class="precio">$100.000</p>
-                    <button>Añadir al Carrito</button>
-                </div>
-                <div class="producto">
-                    <img src="img/amortiguador.png" alt="Producto 2">
-                    <h3>Amortiguador</h3>
-                    <p>Descripción del Producto 2</p>
-                    <p class="precio">$80.000</p>
-                    <button>Añadir al Carrito</button>
-                </div>
-                <div class="producto">
-                    <img src="img/filtro2.png" alt="Producto 3">
-                    <h3>Filtro de Aceite</h3>
-                    <p>Descripción del Producto 3</p>
-                    <p class="precio">$20.000</p>
-                    <button>Añadir al Carrito</button>
-                </div>
-                <div class="producto">
-                    <img src="img/pastilla2.png" alt="Producto 4">
-                    <h3>Pastillas de Freno</h3>
-                    <p>Descripción del Producto 4</p>
-                    <p class="precio">$50.000</p>
-                    <button>Añadir al Carrito</button>
-                </div>
-                <div class="producto">
-                    <img src="img/aceite2.png" alt="Producto 5">
-                    <h3>Aceite de Motor</h3>
-                    <p>Descripción del Producto 5</p>
-                    <p class="precio">$30.000</p>
-                    <button>Añadir al Carrito</button>
-                </div>
-                <div class="producto">
-                    <img src="img/neumatico2.png" alt="Producto 6">
-                    <h3>Neumático</h3>
-                    <p>Descripción del Producto 6</p>
-                    <p class="precio">$200.000</p>
-                    <button>Añadir al Carrito</button>
+                    
                 </div>
             </div>
-            <button id="vercatalogo">Ver catálogo</button>
+            <button id="vercatalogo">Ver Catálogo Completo</button>
         </div>
     </section>
     
@@ -130,6 +182,38 @@
             <p>&copy; 2025 Truck & Trailer Melipilla. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <script>
+        // Función para buscar en el catálogo
+        function buscarEnCatalogo() {
+            const termino = document.getElementById('header-buscador').value.trim();
+            if (termino) {
+                // Redirigir al catálogo con el término de búsqueda como parámetro URL
+                window.location.href = `catalogo.html?buscar=${encodeURIComponent(termino)}`;
+            } else {
+                // Si no hay término, ir al catálogo sin búsqueda
+                window.location.href = 'catalogo.html';
+            }
+        }
+
+        // Función para buscar por categoría
+        function buscarCategoria(categoria) {
+            window.location.href = `catalogo.html?categoria=${encodeURIComponent(categoria)}`;
+        }
+
+        // Permitir búsqueda con Enter
+        document.getElementById('header-buscador').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                buscarEnCatalogo();
+            }
+        });
+
+        // Funcionalidad del botón "Ver catálogo"
+        document.getElementById('vercatalogo').addEventListener('click', function() {
+            window.location.href = 'catalogo.html';
+        });
+    </script>
+    <script src="descuento.js"></script>
 </body>
 
 </html>

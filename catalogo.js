@@ -144,6 +144,12 @@ let carrito = [];
 let paginaActual = 1;
 const productosPorPagina = 15;
 
+// NUEVA FUNCIÓN: Obtener parámetros de la URL
+function obtenerParametroURL(nombre) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(nombre);
+}
+
 // Formatear precio
 function formatearPrecio(precio) {
     return '$' + precio.toLocaleString('es-CL');
@@ -168,11 +174,7 @@ function mostrarProductos() {
                 <h3 class="producto-nombre">${producto.nombre}</h3>
                 <p class="producto-descripcion">${producto.descripcion}</p>
                 <div class="producto-precio">${formatearPrecio(producto.precio)}</div>
-                <div class="producto-acciones">
-                    <button class="btn-carrito" onclick="agregarAlCarrito(${producto.id})">
-                        Agregar al Carrito
-                    </button>
-                </div>
+                
             </div>
         </div>
     `).join('');
@@ -400,11 +402,47 @@ function mostrarNotificacion(mensaje) {
     }, 3000);
 }
 
+// NUEVA FUNCIÓN: Cargar búsqueda desde URL
+function cargarBusquedaDesdeURL() {
+    const terminoBusqueda = obtenerParametroURL('buscar');
+    const categoria = obtenerParametroURL('categoria');
+    
+    if (terminoBusqueda) {
+        // Establecer el término en el input del buscador
+        document.getElementById('buscador').value = terminoBusqueda;
+        // Ejecutar la búsqueda
+        buscarProductos();
+        
+        // Mostrar notificación de búsqueda
+        const mensaje = `🔍 Buscando: "${terminoBusqueda}"`;
+        mostrarNotificacion(mensaje);
+    } else if (categoria) {
+        // Activar filtro de categoría
+        const checkboxCategoria = document.querySelector(`input[name="categoria"][value="${categoria}"]`);
+        if (checkboxCategoria) {
+            checkboxCategoria.checked = true;
+            aplicarFiltros();
+            
+            // Mostrar notificación de categoría
+            const nombreCategoria = categoria.charAt(0).toUpperCase() + categoria.slice(1);
+            const mensaje = `📂 Filtrando por: ${nombreCategoria}`;
+            mostrarNotificacion(mensaje);
+        }
+    }
+}
+
 // Inicializar cuando carga la página
 document.addEventListener('DOMContentLoaded', function() {
     // Mostrar todos los productos inicialmente
     productosFiltrados = [...productos];
-    mostrarProductos();
+    
+    // NUEVO: Verificar si hay búsqueda desde URL
+    cargarBusquedaDesdeURL();
+    
+    // Si no hay búsqueda desde URL, mostrar productos normalmente
+    if (!obtenerParametroURL('buscar')) {
+        mostrarProductos();
+    }
 
     // Event listeners para filtros
     document.querySelectorAll('input[name="categoria"]').forEach(cb => {
